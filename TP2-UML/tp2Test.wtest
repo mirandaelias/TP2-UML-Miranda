@@ -1,0 +1,42 @@
+import empleado.*
+import empresa.*
+import estadoCivil.*
+
+const juan =new EmpleadoPermanente(nombre="Juan",direccion="1460"
+                ,estadoCivil=casado
+                ,fechaDeNacimiento=nacimientoJuan
+                ,cantHijos =2
+                ,antiguedad=6)
+
+const maria=new EmpleadoPermanente(nombre="Maria",direccion="1470"
+                ,estadoCivil=casado
+                ,fechaDeNacimiento=nacimientoMaria
+                ,cantHijos =0
+                ,antiguedad=9)
+
+const carla=new EmpleadoTemporal(nombre="Carla",direccion="1450"
+                ,estadoCivil=soltero
+                ,fechaDeNacimiento=nacimientoCarla
+                ,finDeDesignacion=hoy
+                ,cantHorasExtra=6)
+
+const carlos=new EmpleadoContratado(nombre="Carlos",direccion="1480"
+               ,estadoCivil=casado
+               ,nroContrato= 6286
+               ,fechaDeNacimiento=nacimientoCarlo
+               ,medioDePago=transferencia
+               )
+
+
+const consultora = new Empresa(nombre="Consultora",cuit = 30715236768,empleados= #{juan,maria,carla,carlos})
+
+describe "Empresa" {
+  test "Calculos de sueldos netos " {
+        assert.equals(166009.5 , consultora.totalDeSueldoNetos())
+  }
+
+  test "Liquidacion de sueldos empleados"{
+        consultora.liquidarSueldos()
+        assert.equals(4, consultora.cantDeRecibos())
+  }
+}
